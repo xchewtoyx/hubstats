@@ -9,7 +9,7 @@ class HubStatsController(controller.CementBaseController):
         self.app.args.print_help()
 
 def run():
-    monitor = foundation.CementApplication(
+    monitor = foundation.CementApp(
         label='hubmon',
         base_controller = HubStatsController)
     try:
