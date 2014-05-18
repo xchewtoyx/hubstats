@@ -1,6 +1,8 @@
 from cement.core import controller, foundation, handler
 
-class HubStatsController(controller.CementBaseController):
+from hubmon import fetcher
+
+class BaseController(controller.CementBaseController):
     class Meta:
         label = 'base'
 
@@ -8,10 +10,12 @@ class HubStatsController(controller.CementBaseController):
     def default(self):
         self.app.args.print_help()
 
+
 def run():
     monitor = foundation.CementApp(
         label='hubmon',
-        base_controller = HubStatsController)
+        base_controller = BaseController)
+    fetcher.load()
     try:
         monitor.setup()
         monitor.run()
